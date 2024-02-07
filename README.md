@@ -1,2 +1,2 @@
 # FullStackOpenBackEnd
-Full stack open -course exercises
+Full stack open backend
