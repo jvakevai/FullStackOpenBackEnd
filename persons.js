@@ -57,6 +57,11 @@ app.delete('/api/persons/:id', (request, response) => {
   response.status(204).end()
 })
 
+morgan.token('person', (req, res) => {
+  return JSON.stringify(req.body)
+})
+app.use(morgan(':method :url :status :res[content-length] :response-time ms :person'))
+
 app.post('/api/persons', (request, response) => {
   const body = request.body
   body.id = Math.floor(Math.random()*1000)
@@ -76,15 +81,10 @@ app.post('/api/persons', (request, response) => {
     persons = persons.concat(person)
     response.json(person)
   }
-
-  morgan.token('person', (req) => {
-    return JSON.stringify(req.body)
-  })
 })
 
-app.use(morgan(':method :url :status :res[content-length] :response-time ms'))
-
 const PORT = process.env.PORT || 3001
+
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
 })
