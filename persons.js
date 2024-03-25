@@ -77,7 +77,7 @@ app.post('/api/persons', (request, response) => {
     response.json(person)
   }
 
-  morgan.token('person', (req, res) => {
+  morgan.token('person', (req) => {
     return JSON.stringify(req.body)
   })
 })
